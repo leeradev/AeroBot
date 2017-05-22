@@ -1,10 +1,9 @@
 # AeroBot
 A public Discord bot developed in JavaScript using the d.js library!
 
-Team:
+Main Developer / Owner: Daniel#1572
 
-Main Developer: Daniel#1572
+Management Team
+_________________
 
-Community Manager: Spencer#4904
-
-********************************
+Head Manager: Spencer#4904
