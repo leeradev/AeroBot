@@ -10,11 +10,21 @@ Head Manager: Spencer#4904
 
 ## Installation
 
-Open up CMD and type in npm the following to install pm2:
+To install Aero, first you have to open a command window inside of your bot's folder by right clicking in the folder while holding shift and selecting from the menu, "Open Command Window Here".
 
-*npm install pm2@latest -g
+Next, install discord.js.
+```npm install discord.js --save```
 
-Now in CMD, type in the following to install the discord.js library:
+Next, install pm2.
+```npm install pm2@latest -g```
 
-*npm install discord.js --save
+After that is finished, download aero.js, drag it into your bot folder, and then run your bot through pm2 with the following command:
+```pm2 start aero.js```
 
+To restart the bot, use the following command:
+```pm2 restart aero.js```
+
+To stop the bot, use the following command:
+```pm2 stop aero.js```
+
+Enjoy!
