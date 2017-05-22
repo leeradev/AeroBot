@@ -8,6 +8,6 @@ _________________
 
 Head Manager: Spencer#4904
 
-##Installation
+## Installation
 Run the script after downloading the discord.js library.
 
