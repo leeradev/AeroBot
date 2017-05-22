@@ -1,3 +1,3 @@
 # AeroBot
-?
-A public Discord bot developed by Daniel#1572!
+A public Discord bot developed by Daniel#1572 and Spencer!
+
