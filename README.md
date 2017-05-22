@@ -9,5 +9,12 @@ _________________
 Head Manager: Spencer#4904
 
 ## Installation
-Run the script after downloading the discord.js library.
+
+Open up CMD and type in npm the following to install pm2:
+
+**npm install pm2@latest -g
+
+Now in CMD, type in the following to install the discord.js library:
+
+**npm install discord.js --save
 
