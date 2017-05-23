@@ -26,5 +26,10 @@ To restart the bot, use the following command:
 
 To stop the bot, use the following command:
 ```pm2 stop aero.js```
-
+ 
 Enjoy!
+
+## Progress
+
+So far, the project is still work in progress. It's still a work in progress, which is why we're asking for your contributions!
+

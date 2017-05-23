@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const prefix = '-';
 
 client.on('ready', () => {
-  console.log('I am ready!');
+  console.log('All systems functional!');
 });
 
 client.on('message', message => {
@@ -48,4 +48,4 @@ client.on('message', message => {
 
 });
 
-client.login([your token here, as a string]);
+client.login("insert token");
