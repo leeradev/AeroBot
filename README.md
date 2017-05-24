@@ -1,7 +1,7 @@
 # AeroBot
 An open source Discord bot developed in JavaScript using the discord.js library!
 
-Developers: Daniel#1572 and Zenji#8692
+Developers: Daniel#2976 and Zenji#8692
 
 ## Installation
 
