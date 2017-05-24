@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const prefix = "$";
+const prefix = config.prefix
 
 client.on("ready", () => {
   console.log("All systems functional!");
@@ -85,4 +85,4 @@ client.on("message", message => {
       }
 });
 
-client.login("your bot's token");
+client.login(bot.token);
