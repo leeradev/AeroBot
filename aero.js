@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const prefix = "$";
+const config = require('./config.json');
+const prefix = config.prefix;
 
 client.on("ready", () => {
   console.log("All systems functional!");
@@ -43,6 +44,11 @@ client.on("message", message => {
 
 
     if(message.content.startsWith(prefix + "setgame")) {
+      let modRole = message.guild.roles.find("name", "Moderator");
+      if(!message.member.roles.has(modRole.id)) {
+          return message.channel.send("You are not authorized to use this command. :slight_frown:");
+      }
+      if(message.member.roles.has(modRole.id)) {
       var argresult = args.join(" ");
       client.user.setGame(argresult)
     }
@@ -85,4 +91,4 @@ client.on("message", message => {
       }
 });
 
-client.login("your bot's token");
+client.login("your token here");
