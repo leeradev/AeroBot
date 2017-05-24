@@ -18,6 +18,9 @@ client.on("guildMemberRemove", member => {
 });
 
 client.on("message", message => {
+
+  let modRole = message.guild.roles.find("name", "Moderator");
+
   if (message.author.bot) return;
   let args = message.content.split(" ").slice(1);
 
@@ -32,7 +35,6 @@ client.on("message", message => {
   }
 
   if(message.content.startsWith(prefix + "clear")) {
-    let modRole = message.guild.roles.find("name", "Moderator");
     if(!message.member.roles.has(modRole.id)) {
         return message.channel.send("You are not authorized to use this command. :slight_frown:");
     }
@@ -44,11 +46,6 @@ client.on("message", message => {
 
 
     if(message.content.startsWith(prefix + "setgame")) {
-      let modRole = message.guild.roles.find("name", "Moderator");
-      if(!message.member.roles.has(modRole.id)) {
-          return message.channel.send("You are not authorized to use this command. :slight_frown:");
-      }
-      if(message.member.roles.has(modRole.id)) {
       var argresult = args.join(" ");
       client.user.setGame(argresult)
     }
@@ -61,7 +58,6 @@ client.on("message", message => {
 
 
     if (message.content.startsWith(prefix + "say")) {
-        let modRole = message.guild.roles.find("name", "Moderator");
         if(message.member.roles.has(modRole.id)) {
          message.channel.send(args.join(" "));
         } else {
@@ -71,7 +67,6 @@ client.on("message", message => {
     }
 
     if (message.content.startsWith(prefix + "kick")) {
-        let modRole = message.guild.roles.find("name", "Moderator");
         if(!message.member.roles.has(modRole.id)) {
             return message.channel.send("You are not authorized to use this command. :slight_frown:");
         }
@@ -91,4 +86,4 @@ client.on("message", message => {
       }
 });
 
-client.login("your token here");
+client.login("your bot's token goes here");
