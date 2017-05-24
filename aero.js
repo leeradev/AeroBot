@@ -6,6 +6,16 @@ client.on("ready", () => {
   console.log("All systems functional!");
 });
 
+client.on("guildMemberAdd", member => {
+  let guild = member.guild;
+  guild.defaultChannel.send(`Welcome ${member.user} to this server.`);
+});
+
+client.on("guildMemberRemove", member => {
+  let guild = member.guild;
+  guild.defaultChannel.send(`${member.user} has left. Goodbye. :cry:`);
+});
+
 client.on("message", message => {
   if (message.author.bot) return;
   let args = message.content.split(" ").slice(1);
@@ -19,7 +29,6 @@ client.on("message", message => {
       let total = numArray.reduce( (p, c) => p+c);
       message.channel.send(total);
   }
-
 
   if(message.content.startsWith(prefix + "clear")) {
     let modRole = message.guild.roles.find("name", "Moderator");
@@ -44,6 +53,36 @@ client.on("message", message => {
       process.exit()
     }
 
+
+    if (message.content.startsWith(prefix + "say")) {
+        let modRole = message.guild.roles.find("name", "Moderator");
+        if(message.member.roles.has(modRole.id)) {
+         message.channel.send(args.join(" "));
+        } else {
+            message.channel.send("You are not authorized to use this command. :slight_frown:").catch(console.error);
+        }
+
+    }
+
+    if (message.content.startsWith(prefix + "kick")) {
+        let modRole = message.guild.roles.find("name", "Moderator");
+        if(!message.member.roles.has(modRole.id)) {
+            return message.channel.send("You are not authorized to use this command. :slight_frown:");
+        }
+        if(message.mentions.users.size === 0) {
+            return message.channel.send("Please mention a user to kick.");
+        }
+        let kickMember = message.guild.member(message.mentions.users.first());
+        if (!kickMember) {
+            return message.channel.send("That user does not seem valid.");
+        }
+        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
+            return message.channel.send("I don't have the permissions (KICK_MEMBER) to do this.")
+        }
+        kickMember.kick().then(member => {
+            message.channel.send(`${member.user.username} was successfully kicked.`)
+        }).catch(console.error)
+      }
 });
 
-client.login("your bot token here");
+client.login("your bot's token");
