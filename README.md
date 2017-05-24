@@ -5,4 +5,4 @@ Developers: Daniel#2976 and Zenji#8692
 
 ## Installation
 
-If you want us to install Aero into your server, just give me a DM or send me a friend request! My Discord username is Daniel#1572.
+If you want us to install Aero into your server, just give me a DM or send me a friend request! My Discord username is Daniel#2976.
