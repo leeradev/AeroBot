@@ -20,9 +20,10 @@ client.on("guildMemberRemove", member => {
 client.on("message", message => {
 
   let modRole = message.guild.roles.find("name", "Moderator");
-
+  let adminRole = message.guild.roles.find("name", "Administrator");
   if (message.author.bot) return;
   let args = message.content.split(" ").slice(1);
+  var argresult = args.join(" ");
 
   if(message.content === (prefix + "ping")) {
   message.channel.send("Ping?").then(m => m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms.`) );
@@ -35,6 +36,7 @@ client.on("message", message => {
   }
 
   if(message.content.startsWith(prefix + "clear")) {
+    message.delete();
     if(!message.member.roles.has(modRole.id)) {
         return message.channel.send("You are not authorized to use this command. :slight_frown:");
     }
@@ -46,18 +48,31 @@ client.on("message", message => {
 
 
     if(message.content.startsWith(prefix + "setgame")) {
-      var argresult = args.join(" ");
+      message.delete();
+      if(!message.member.roles.has(modRole.id)) return message.channel.send("You are not authorized to use this command. :slight_frown:");
       client.user.setGame(argresult)
     }
 
+    if(message.content.startsWith(prefix + "dm")) {
+    message.delete();
+    if(!message.member.roles.has(adminRole.id)) return message.channel.send("You are not authorized to use this command. :slight_frown:");
+    if(message.mentions.users.size === 1) {
+    message.mentions.users.first().send(argresult)
+  } else {
+    message.channel.send("Please mention a single user to DM.").catch(console.error);
+  }
+  }
+
 
     if(message.content === (prefix + "reset")) {
+      message.delete();
       if (message.author.id !== "217411439948726272")   return;
       process.exit()
     }
 
 
     if (message.content.startsWith(prefix + "say")) {
+      message.delete();
         if(message.member.roles.has(modRole.id)) {
          message.channel.send(args.join(" "));
         } else {
@@ -67,6 +82,7 @@ client.on("message", message => {
     }
 
     if (message.content.startsWith(prefix + "kick")) {
+      message.delete();
         if(!message.member.roles.has(modRole.id)) {
             return message.channel.send("You are not authorized to use this command. :slight_frown:");
         }
@@ -86,4 +102,4 @@ client.on("message", message => {
       }
 });
 
-client.login("your bot's token goes here");
+client.login("your bot token goes here");
