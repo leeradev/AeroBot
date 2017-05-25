@@ -64,7 +64,7 @@ client.on("message", message => {
   }
 
 
-    if(message.content === (prefix + "reset")) {
+    if(message.content === (prefix + "reboot")) {
       message.delete();
       if (message.author.id !== "217411439948726272")   return;
       process.exit()
@@ -100,6 +100,39 @@ client.on("message", message => {
             message.channel.send(`${member.user.username} was successfully kicked.`)
         }).catch(console.error)
       }
+
+      if (message.content.startsWith(prefix + "ban")) {
+          let modRole = message.guild.roles.find("name", "Moderator");
+          if(!message.member.roles.has(modRole.id)) {
+              return message.channel.send("You are not authorized to use this command. :slight_frown:");
+          }
+          if(message.mentions.users.size === 0) {
+              return message.channel.send("Please mention a user to ban.");
+          }
+          let banMember = message.guild.member(message.mentions.users.first());
+          if (!banMember) {
+              return message.channel.send("That user does not seem valid.");
+          }
+          if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
+              return message.channel.send("I don't have the permissions (BAN_MEMBER) to do this.")
+          }
+          banMember.ban().then(member => {
+              message.channel.send(`${member.user.username} was successfully banned.`)
+          }).catch(console.error)
+        }
+
+        if (message.content.startsWith(prefix + "unban")) {
+            let modRole = message.guild.roles.find("name", "Moderator");
+            if(!message.member.roles.has(modRole.id)) {
+                return message.channel.send("You are not authorized to use this command. :slight_frown:");
+            }
+
+            message.guild.fetchBans().then(member => {
+            message.guild.unban(args[0]);
+              message.channel.send(`${member.user.username} was successfully unbanned.`)
+            }).catch(console.error)
+          }
+
 });
 
-client.login("your bot token goes here");
+client.login("your bot token here");
