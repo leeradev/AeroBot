@@ -135,4 +135,4 @@ client.on("message", message => {
 
 });
 
-client.login("your bot token here");
+client.login(config.token);
